@@ -1,5 +1,6 @@
 "use client";
 import Map from "./Map";
+import List from "./List";
 import { useEffect, useState } from "react";
 
 const Home = () => {
@@ -30,6 +31,7 @@ const Home = () => {
     <div>
       <h1>Starbucks Locator</h1>
       <Map currentLocation={currentLocation} />
+      <List />
     </div>
   );
 };
