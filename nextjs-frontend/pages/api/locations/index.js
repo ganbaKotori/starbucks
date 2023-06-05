@@ -16,7 +16,8 @@ async function handler(req, res) {
   // Query arguments
   const { lat, lng } = query;
 
-  const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=5000&type=cafe&keyword=starbucks&key=${process.env.NEXT_PUBLIC_PLACES_API_KEY}`;
+  const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=2500&type=cafe&keyword=starbucks&key=${process.env.NEXT_PUBLIC_PLACES_API_KEY}`;
+  const url3 = `https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJq0UpCQjOwoARnjqTvqokZ0o&key=${process.env.NEXT_PUBLIC_PLACES_API_KEY}`;
   const re2 = await fetch(url);
   const data = await re2.json();
   console.log(data);
