@@ -14,6 +14,7 @@ const Home = () => {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           };
+          console.log(location);
           setCurrentLocation(location);
         },
         function (error) {
