@@ -9,12 +9,11 @@ const LocationList = ({ locations }) => {
     }
     return (
         <div>
-            <h2>Locations</h2>
-            <ul>
+            <ol className="list-decimal">
                 {locations.map((location, index) => (
                     <li key={index}>{location.vicinity}</li>
                 ))}
-            </ul>
+            </ol>
         </div>
     );
 };

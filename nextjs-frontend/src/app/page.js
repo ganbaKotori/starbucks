@@ -49,11 +49,17 @@ const Home = () => {
   }, [currentLocation]);
 
   return (
-    <div>
+    <>
       <Header />
-      <Map currentLocation={currentLocation} locations={locations} />
-      <LocationList locations={locations} />
-    </div>
+      <div className="flex flex-col md:flex-row">
+        <div className="w-full md:w-3/4">
+          <Map currentLocation={currentLocation} locations={locations} />
+        </div>
+        <div className="w-full md:w-1/4">
+          <LocationList locations={locations} />
+        </div>
+      </div>
+    </>
   );
 };
 
