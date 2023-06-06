@@ -1,7 +1,7 @@
 "use client";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 
-const Map = ({ currentLocation }) => {
+const Map = ({ currentLocation, locations }) => {
     const apiKey = process.env.NEXT_PUBLIC_API_KEY;
     const containerStyle = {
         width: "100%",
@@ -9,12 +9,16 @@ const Map = ({ currentLocation }) => {
     };
     return (
         <LoadScript googleMapsApiKey={apiKey}>
-            {currentLocation ? (
+            {currentLocation && locations ? (
                 <GoogleMap
                     mapContainerStyle={containerStyle}
                     center={currentLocation}
-                    zoom={10}
-                ></GoogleMap>
+                    zoom={12}
+                >
+                    {locations.map((location, index) => (
+                        <Marker key={index} position={{ lat: location.geometry.location.lat, lng: location.geometry.location.lng }} />
+                    ))}
+                </GoogleMap>
             ) : (
                 <div>Loading...</div>
             )}

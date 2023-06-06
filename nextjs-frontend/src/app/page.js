@@ -1,10 +1,12 @@
 "use client";
 import Map from "./Map";
 import LocationList from "./LocationList";
+import Header from "./Header";
 import { useEffect, useState } from "react";
 
 const Home = () => {
   const [currentLocation, setCurrentLocation] = useState(null);
+  const [locations, setLocations] = useState([]);
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -28,11 +30,29 @@ const Home = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (currentLocation === null) {
+    } else {
+      const { lat, lng } = currentLocation;
+      const fetchData = async () => {
+        try {
+          const response = await fetch(`/api/locations?lat=${lat}&lng=${lng}`);
+          const data = await response.json();
+          setLocations(data.results);
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      };
+
+      fetchData();
+    }
+  }, [currentLocation]);
+
   return (
     <div>
-      <h1>Starbucks Locator</h1>
-      <Map currentLocation={currentLocation} />
-      <LocationList currentLocation={currentLocation} />
+      <Header />
+      <Map currentLocation={currentLocation} locations={locations} />
+      <LocationList locations={locations} />
     </div>
   );
 };
